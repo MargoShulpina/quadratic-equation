@@ -1,19 +1,12 @@
 module.exports = function solveEquation(equation) {
-  let num = equation.replace(" * x^2 ",",")
-        let num2 = num.replace(" * x",",")
-        let num3 = num2.replace(/\ /g,"")
-        var arr = num3.split(",")
-        var a = Number(arr[0])
-        var b = Number(arr[1])
-        var c = Number(arr[2])
-        var d = (- b - Math.sqrt(b * b - 4 * a * c))/(2 * a)
-        var e = (- b + Math.sqrt(b * b - 4 * a * c))/(2 * a)
+  let arr = equation.replace("* x^2", ",").replace("* x",",").replace(/\ /g,"").split(",");
+  let a = Number(arr[0]);
+  let b = Number(arr[1]);
+  let c = Number(arr[2]);
+  let x1 = (- b - Math.sqrt(b * b - 4 * a * c))/(2 * a);
+  let x2= (- b + Math.sqrt(b * b - 4 * a * c))/(2 * a);
         
-       if (d<e){
-        return [Math.round(d), Math.round(e)];}
-        else{
-         return [Math.round(e), Math.round(d)]}
-      
-    
-
+  return (x1<x2) 
+    ? [Math.round(x1), Math.round(x2)] 
+    : [Math.round(x2), Math.round(x1)];
 }
